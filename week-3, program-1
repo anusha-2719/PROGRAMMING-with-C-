@@ -1,0 +1,83 @@
+Develop a C++ program that models a Bank Account using a class. The class include data members account number, name, balance and member functions  deposit, withdraw, display balance.
+#include<iostream>
+#include<string>
+using namespace std;
+class bankacc {
+private:
+int accnum;
+string name;
+float balance;
+public:
+void createacc(){
+cout<<"enter the account number: ";
+cin>>accnum;
+cin.ignore();
+cout<<"enter acc holder name: ";
+getline(cin,name);
+cout<<"enter intial balance: ";
+cin>>balance;
+cout<<"\naccount created successfully!\n";
+}
+void deposit(){
+float amount;
+cout<<"enter amount to deposit: ₹";
+cin>>amount;
+if(amount>0){
+balance+=amount;
+cout<< "₹" <<amount << " deposited successfully.\n";
+}else{
+cout<< "Invalid deposit amount.\n";
+}
+}
+ 
+void withdraw(){
+float amount;
+cout<<"enter amount to withdraw: ₹";
+cin>>amount;
+if(amount>0&&amount<=balance){
+balance -=amount;
+cout<<"₹"<<amount<<"withdraw successfully.\n";
+}else{
+cout<<"insufficient balance or invalid amount\n";
+}
+}
+void displaybalance() const{
+cout<<"\n-----account details----\n";
+cout<<"Account number : "<<accnum<<endl;
+cout<<"current balance :$"<<balance<<endl;
+}
+};
+int main()
+{
+bankacc myacc;
+int choice;
+myacc.createacc();
+do{
+cout<<"\n-----bank menu----\n";
+cout<<"1. Deposit\n";
+cout<<"2. Withdraw\n";
+cout<<"3. Display Balance\n";
+cout<<"4. Exit\n";
+cout<<"enter your choice: ";
+cin>>choice;
+switch(choice){
+case 1:
+myacc.deposit();
+break;
+case 2:
+myacc.withdraw();
+break;
+case 3:
+myacc.displaybalance();
+break;
+case 4:
+cout<<"thank you for using our banking system. \n";
+break;
+default:
+cout<<"invalid choice. please try again. \n";
+
+}
+
+}while(choice!=4);
+return 0;
+}
